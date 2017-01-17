@@ -1,5 +1,6 @@
 ﻿using Shopping;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace HarryBooks
@@ -18,42 +19,23 @@ namespace HarryBooks
 
         public void CalculateCost()
         {
-            // 買一本無折扣
-            if (_books.Count == 1)
+            // 用集數分類
+            var differentCount = _books.GroupBy(g => g.Episode).Count();
+
+            // 判斷
+            if (differentCount == 3)
+            {
+                SumPrice(_books.Select(c => c.Episode), 0.9);
+            }
+            else if (differentCount == 2)
+            {
+                SumPrice(_books.Select(c => c.Episode), 0.95);
+            }
+            else 
             {
                 SumPrice(_books.Select(c => c.Episode), 1);
             }
-
-            // 買兩本不同書折扣95折
-            if (_books.Count == 2)
-            {
-                if (_books[0].Episode == _books[1].Episode)
-                {
-                    SumPrice(_books.Select(c => c.Episode), 1);
-                }
-                else
-                {
-                    SumPrice(_books.Select(c => c.Episode), 0.95);
-                }
-            }
-
-            // 三本不同9折
-            if (_books.Count == 3)
-            {
-                if (_books[0].Episode != _books[1].Episode &&
-                    _books[1].Episode != _books[2].Episode &&
-                    _books[2].Episode != _books[0].Episode)
-                {
-                    SumPrice(_books.Select(c => c.Episode), 0.9);
-                }
-                else
-                {
-                    //判斷兩本相同&三本相同
-                }
-            }
-
         }
-
 
         /// <summary>
         /// 加總價錢並計算折扣
