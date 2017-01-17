@@ -1,24 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 
 namespace CalculateLibrary
 {
     public class GeneralBooksStrategy : PriceStrategy
     {
+        public GeneralBooksStrategy()
+        {
+            SetDiscount();
+        }
 
         public GeneralBooksStrategy(List<Book> books)
             : base(books)
         {
+            SetDiscount();
+        }
+
+        private void SetDiscount()
+        {
             //無折
-            base.discount = 1;
+            base._discount = 1;
         }
 
         public override int SumPrice()
         {
-            return (int)(_books.Sum(c => c.UnitPrice) * discount);
+             _totalPrice += (int)(_books.Sum(c => c.UnitPrice) * _discount);
+
+            return _totalPrice;
         }
     }
 }

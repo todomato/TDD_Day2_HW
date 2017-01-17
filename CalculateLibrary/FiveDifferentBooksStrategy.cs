@@ -1,21 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CalculateLibrary
 {
     public class FiveDifferentBooksStrategy : PriceStrategy
     {
-        public FiveDifferentBooksStrategy(List<Book> books): base(books)
+        public FiveDifferentBooksStrategy()
+        {
+            SetDiscount();
+        }
+
+        public FiveDifferentBooksStrategy(List<Book> books)
+            : base(books)
+        {
+            SetDiscount();
+        }
+
+        private void SetDiscount()
         {
             //七五折
-            base.discount = 0.75;
+            base._discount = 0.75;
         }
 
         public override int SumPrice()
         {
-            return (int)(_books.Sum(c => c.UnitPrice) * discount);
+            if (_books.Count() == 5)
+            {
+                _totalPrice += (int)(_books.Sum(c => c.UnitPrice) * _discount);
+                RemoveCalculatedBooks();
+                if (_books.Count() == 5)
+                {
+                    _totalPrice = SumPrice();
+                }
+            }
+
+            if (base._nextStrategy != null)
+            {
+                _nextStrategy.SetBooks(_books, _totalPrice);
+                _totalPrice = _nextStrategy.SumPrice();
+            }
+
+            return _totalPrice;
         }
     }
 }
