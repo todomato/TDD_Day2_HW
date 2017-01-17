@@ -13,7 +13,7 @@ namespace Shopping
 
         public int UnitPrice { get; set; }
 
-        public int Eposide { get; set; }
+        public int Episode { get; set; }
 
 
     }
