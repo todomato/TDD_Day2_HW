@@ -41,7 +41,7 @@ namespace HarryBooks.Tests
         }
 
         [TestMethod()]
-        public void Buy_1_First_Episode_And_Second_Episode_And_Second_Episode_Price_Should_270()
+        public void Buy_1_First_Episode_And_Second_Episode_And_Third_Episode_Price_Should_270()
         {
             var Books = new List<Book>()
             {
@@ -141,6 +141,25 @@ namespace HarryBooks.Tests
             };
             var shoppingCar = new ShoppingCar(Books);
             var excepted = 750;
+
+            shoppingCar.CalculateCost();
+
+            excepted.ToExpectedObject().ShouldEqual(shoppingCar.TotalCost);
+        }
+
+        [TestMethod()]
+        public void Buy_Two_Set_()
+        {
+            var Books = new List<Book>()
+            {
+                new Book(){ Name = "Harry", Episode = 1, Count = 2, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 2, Count = 3, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 3, Count = 2, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 4, Count = 4, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 5, Count = 2, UnitPrice = 100}
+            };
+            var shoppingCar = new ShoppingCar(Books);
+            var excepted = 750 + 190 + 100;
 
             shoppingCar.CalculateCost();
 

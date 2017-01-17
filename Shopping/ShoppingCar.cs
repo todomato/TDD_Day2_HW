@@ -32,7 +32,7 @@ namespace HarryBooks
             threeDifferentBooksStrategy.SetNextStrategy(twoDifferentBooksStrategy);
             twoDifferentBooksStrategy.SetNextStrategy(generalBooksStrategy);
 
-            _totalCost += fiveDifferentBooksStrategy.SumPrice();
+            _totalCost = fiveDifferentBooksStrategy.SumPrice();
         }
     }
 }

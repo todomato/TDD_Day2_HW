@@ -24,15 +24,8 @@ namespace CalculateLibrary
 
         public override int SumPrice()
         {
-            if (_books.Count() == 2)
-            {
-                _totalPrice += (int)(_books.Sum(c => c.UnitPrice) * _discount);
-                this.RemoveCalculatedBooks();
-                if (_books.Count() == 2)
-                {
-                    _totalPrice = SumPrice();
-                }
-            }
+            CalculatePrice();
+
             if (base._nextStrategy != null)
             {
                 _nextStrategy.SetBooks(_books, _totalPrice);
@@ -40,6 +33,20 @@ namespace CalculateLibrary
             }
 
             return _totalPrice;
+        }
+
+        private void CalculatePrice()
+        {
+            if (_books.Count() == 2)
+            {
+                _totalPrice += (int)(_books.Sum(c => c.UnitPrice) * _discount);
+                RemoveCalculatedBooks();
+
+                if (_books.Count() == 2)
+                {
+                    CalculatePrice();
+                }
+            }
         }
     }
 }
