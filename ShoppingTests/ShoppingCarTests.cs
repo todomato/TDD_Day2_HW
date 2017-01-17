@@ -109,5 +109,22 @@ namespace HarryBooks.Tests
 
             excepted.ToExpectedObject().ShouldEqual(shoppingCar.TotalCost);
         }
+
+        [TestMethod()]
+        public void Buy_1_First_Episode_And_Buy_2_Second_Episode_And_Thrid_Episode_Price_Should_460()
+        {
+            var Books = new List<Book>()
+            {
+                new Book(){ Name = "Harry", Episode = 1, Count = 1, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 2, Count = 2, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 3, Count = 2, UnitPrice = 100}
+            };
+            var shoppingCar = new ShoppingCar(Books);
+            var excepted = 460;
+
+            shoppingCar.CalculateCost();
+
+            excepted.ToExpectedObject().ShouldEqual(shoppingCar.TotalCost);
+        }
     }
 }
