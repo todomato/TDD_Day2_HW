@@ -16,15 +16,28 @@ namespace HarryBooks
 
         public int TotalCost { get { return _totalCost; } }
 
-        public int CalculateCost()
+        public void CalculateCost()
         {
             // 買一本無折扣
             if (_books.Count == 1)
-	        {
-                _totalCost = _books[0].UnitPrice;    
-	        }
+            {
+                _totalCost = _books[0].UnitPrice;
+            }
 
-            return 0;
+            // 買兩本不同書折扣95折
+            if (_books.Count == 2)
+            {
+                if (_books[0].Episode == _books[1].Episode)
+                {
+                    _totalCost = _books[0].UnitPrice + _books[1].UnitPrice;
+                }
+                else
+                {
+                    //小數無條件捨去
+                    _totalCost = (int)((_books[0].UnitPrice + _books[1].UnitPrice) * 0.95);
+                }
+            }
+
         }
     }
 }
