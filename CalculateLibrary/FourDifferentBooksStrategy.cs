@@ -41,11 +41,7 @@ namespace CalculateLibrary
             {
                 _totalPrice += (int)(_books.Sum(c => c.UnitPrice) * _discount);
                 RemoveCalculatedBooks();
-
-                if (_books.Count() == 4)
-                {
-                    CalculatePrice();
-                }
+                CalculatePrice();
             }
         }
     }
