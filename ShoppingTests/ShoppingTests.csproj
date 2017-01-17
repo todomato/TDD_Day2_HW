@@ -58,6 +58,10 @@
     <Compile Include="ShoppingCarTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CalculateLibrary\CalculateLibrary.csproj">
+      <Project>{ea3333c2-a7af-4db7-9075-66879d9a0c1d}</Project>
+      <Name>CalculateLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shopping\Shopping.csproj">
       <Project>{544ED117-B55E-4B85-B693-8C819A80DA7A}</Project>
       <Name>Shopping</Name>

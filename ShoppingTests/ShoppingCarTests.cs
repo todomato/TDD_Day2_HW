@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shopping;
+
 using System.Collections.Generic;
 using ExpectedObjects;
+using CalculateLibrary;
 
 namespace HarryBooks.Tests
 {
@@ -121,6 +122,25 @@ namespace HarryBooks.Tests
             };
             var shoppingCar = new ShoppingCar(Books);
             var excepted = 460;
+
+            shoppingCar.CalculateCost();
+
+            excepted.ToExpectedObject().ShouldEqual(shoppingCar.TotalCost);
+        }
+
+        [TestMethod()]
+        public void Buy_Two_Set_Price_Should_750()
+        {
+            var Books = new List<Book>()
+            {
+                new Book(){ Name = "Harry", Episode = 1, Count = 2, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 2, Count = 2, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 3, Count = 2, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 4, Count = 2, UnitPrice = 100},
+                new Book(){ Name = "Harry", Episode = 5, Count = 2, UnitPrice = 100}
+            };
+            var shoppingCar = new ShoppingCar(Books);
+            var excepted = 750;
 
             shoppingCar.CalculateCost();
 

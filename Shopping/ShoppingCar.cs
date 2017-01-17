@@ -1,4 +1,4 @@
-﻿using Shopping;
+﻿
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,30 +23,44 @@ namespace HarryBooks
             // 不同集數數量
             var differentCount = _books.Count();
 
+            // TODO 責任鏈概念，先判斷5->4->3->2本書是否不同
             // 打折邏輯
             if (differentCount == 5)
             {
-                SumPrice(0.75);
+                //負責處理五筆不同
+                PriceStrategy priceStrategy = new FiveDifferentBooksStrategy(_books);
+                _totalCost += priceStrategy.SumPrice();
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 4)
             {
-                SumPrice(0.8);
+                //負責處理四筆不同
+                PriceStrategy priceStrategy = new FourDifferentBooksStrategy(_books);
+                _totalCost += priceStrategy.SumPrice();
+
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 3)
             {
-                SumPrice(0.9);
+                //負責處理三筆不同
+                PriceStrategy priceStrategy = new ThreeDifferentBooksStrategy(_books);
+                _totalCost += priceStrategy.SumPrice();
+
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 2)
             {
-                SumPrice(0.95);
+                //負責處理二筆不同
+                PriceStrategy priceStrategy = new TwoDifferentBooksStrategy(_books);
+                _totalCost += priceStrategy.SumPrice();
+
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 1)
             {
-                SumPrice(1);
+                PriceStrategy priceStrategy = new GeneralBooksStrategy(_books);
+                _totalCost += priceStrategy.SumPrice();
+
             }
         }
 
@@ -63,17 +77,7 @@ namespace HarryBooks
             _books = _books.Where(c => c.Count != 0).ToList();
             CalculateCost();
         }
-
-        /// <summary>
-        /// 加總價錢並計算折扣
-        /// </summary>
-        /// <param name="enumerable">加總數列</param>
-        /// <param name="discount">折扣</param>
-        private void SumPrice(double discount)
-        {
-            _totalCost += (int)(_books.Sum(c => c.UnitPrice) * discount);
-        }
-
+     
    
     }
 }
