@@ -42,7 +42,7 @@
     <Compile Include="Book.cs" />
     <Compile Include="FourDifferentBooksStrategy.cs" />
     <Compile Include="GeneralBooksStrategy.cs" />
-    <Compile Include="IPriceStrategy.cs" />
+    <Compile Include="PriceStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FiveDifferentBooksStrategy.cs" />
     <Compile Include="ThreeDifferentBooksStrategy.cs" />
