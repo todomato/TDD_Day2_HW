@@ -19,9 +19,6 @@ namespace HarryBooks
 
         public void CalculateCost()
         {
-            // 不同集數數量
-            var differentCount = _books.Count();
-
             // 責任鏈概念，先判斷5->4->3->2本書是否不同
             PriceStrategy fiveDifferentBooksStrategy = new FiveDifferentBooksStrategy(_books);
             PriceStrategy fourDifferentBooksStrategy = new FourDifferentBooksStrategy();
@@ -36,7 +33,6 @@ namespace HarryBooks
             twoDifferentBooksStrategy.SetNextStrategy(generalBooksStrategy);
 
             _totalCost += fiveDifferentBooksStrategy.SumPrice();
-           
         }
     }
 }
