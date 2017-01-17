@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using CalculateLibrary;
 
 namespace HarryBooks
 {
@@ -25,27 +26,27 @@ namespace HarryBooks
             // 打折邏輯
             if (differentCount == 5)
             {
-                SumPrice(_books.Select(c => c.Episode), 0.75);
+                SumPrice(0.75);
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 4)
             {
-                SumPrice(_books.Select(c => c.Episode), 0.8);
+                SumPrice(0.8);
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 3)
             {
-                SumPrice(_books.Select(c => c.Episode), 0.9);
+                SumPrice(0.9);
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 2)
             {
-                SumPrice(_books.Select(c => c.Episode), 0.95);
+                SumPrice(0.95);
                 RemoveCalculatedBooks();
             }
             else if (differentCount == 1)
             {
-                SumPrice(_books.Select(c => c.Episode), 1);
+                SumPrice(1);
             }
         }
 
@@ -68,7 +69,7 @@ namespace HarryBooks
         /// </summary>
         /// <param name="enumerable">加總數列</param>
         /// <param name="discount">折扣</param>
-        private void SumPrice(IEnumerable<int> enumerable, double discount)
+        private void SumPrice(double discount)
         {
             _totalCost += (int)(_books.Sum(c => c.UnitPrice) * discount);
         }
