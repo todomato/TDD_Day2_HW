@@ -23,7 +23,11 @@ namespace HarryBooks
             var differentCount = _books.GroupBy(g => g.Episode).Count();
 
             // 判斷
-            if (differentCount == 4)
+            if (differentCount == 5)
+            {
+                SumPrice(_books.Select(c => c.Episode), 0.75);
+            }
+            else if (differentCount == 4)
             {
                 SumPrice(_books.Select(c => c.Episode), 0.8);
             }
