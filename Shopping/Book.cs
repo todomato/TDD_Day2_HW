@@ -12,5 +12,9 @@ namespace Shopping
         public string Name { get; set; }
 
         public int UnitPrice { get; set; }
+
+        public int Eposide { get; set; }
+
+
     }
 }
