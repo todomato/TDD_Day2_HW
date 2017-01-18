@@ -146,24 +146,5 @@ namespace HarryBooks.Tests
 
             excepted.ToExpectedObject().ShouldEqual(shoppingCar.TotalCost);
         }
-
-        [TestMethod()]
-        public void Buy_Two_Set_()
-        {
-            var Books = new List<Book>()
-            {
-                new Book(){ Name = "Harry", Episode = 1, Count = 2, UnitPrice = 100},
-                new Book(){ Name = "Harry", Episode = 2, Count = 3, UnitPrice = 100},
-                new Book(){ Name = "Harry", Episode = 3, Count = 2, UnitPrice = 100},
-                new Book(){ Name = "Harry", Episode = 4, Count = 4, UnitPrice = 100},
-                new Book(){ Name = "Harry", Episode = 5, Count = 2, UnitPrice = 100}
-            };
-            var shoppingCar = new ShoppingCar(Books);
-            var excepted = 750 + 190 + 100;
-
-            shoppingCar.CalculateCost();
-
-            excepted.ToExpectedObject().ShouldEqual(shoppingCar.TotalCost);
-        }
     }
 }
